@@ -1,16 +1,13 @@
-import React from 'react';
 import styled from 'styled-components';
 
-import logo from '../assets/logo.png';
-
-const Wrapper = styled.div`
+export const Wrapper = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
   padding-top: 60px;
 `;
 
-const Form = styled.form`
+export const Form = styled.form`
   display: flex;
   margin-top: 20px;
   max-width: 400px;
@@ -44,16 +41,3 @@ const Form = styled.form`
     }
   }
 `;
-
-const Main = () => (
-  <Wrapper>
-    <img src={logo} alt="Go Git!" />
-
-    <Form>
-      <input type="text" placeholder="usuário/repositório" />
-      <button type="submit">OK</button>
-    </Form>
-  </Wrapper>
-);
-
-export default Main;
