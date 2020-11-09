@@ -60,7 +60,7 @@ export default class Main extends Component {
       const { repositories } = this.state;
 
       const newRepos = repositories.filter(item => item.id !== id);
-      newRepo.data.lastCommit = moment(newRepos.pushed_at).fromNow();
+      newRepos.data.lastCommit = moment(newRepos.pushed_at).fromNow();
 
       this.setState({
         repositories: [...newRepos, newRepo.data],
@@ -72,34 +72,25 @@ export default class Main extends Component {
 
   render() {
     const {
-      loading,
-      repositoryInput,
-      repositories,
-      repositoryError,
+      loading, repositoryInput, repositories, repositoryError,
     } = this.state;
     return (
       <Wrapper>
         <img src={logo} alt="Go Git!" />
 
-        <Form
-          withError={repositoryError}
-          onSubmit={e => this.handleAddRepository(e)}
-        >
+        <Form withError={repositoryError} onSubmit={e => this.handleAddRepository(e)}>
           <input
             type="text"
             placeholder="usuário/repositório"
             value={repositoryInput}
             onChange={e => this.setState({ repositoryInput: e.target.value })}
           />
-          <button type="submit">
-            {loading ? <i className="fa fa-spinner fa-pulse" /> : 'OK'}
-          </button>
+          <button type="submit">{loading ? <i className="fa fa-spinner fa-pulse" /> : 'OK'}</button>
         </Form>
         <CompareList
           repositories={repositories}
           handleDeleteRepository={id => this.handleDeleteRepository(id)}
-          handleRefreshRepository={(path, id) => this.handleRefreshRepository(path, id)
-          }
+          handleRefreshRepository={(path, id) => this.handleRefreshRepository(path, id)}
         />
       </Wrapper>
     );
